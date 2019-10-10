@@ -38,14 +38,38 @@
         document.onkeypress = function(event) {
             var userGuess = event.key;
 
+            //If guess matches computer alert win and increase wins//
+
             if (userGuess === computerChoice) {
                 wins++;
+                alert("YOU WIN!");
+                computerChoice = alphabet[Math.floor(Math.random() * alphabet.length)];
+                console.log(computerChoice);
             }
+
+            //If you guess wrong decrease guesses by 1 and increase guesses used by 1//
+
             else{
                 guesses--;
+                guessesUsed++;
             }
+
+            //When guesses reach 0 resets to a new game//
+
             if(guesses === 0){
-                losses++
+                losses++;
+                guesses = 10;
+                guessesUsed = 0;
+                alert("YOU LOSE!");
+
+                //Leah and Liam helped me fix my code, Leah showed me one way Liam showed me another//
+
+                document.getElementById("wins").innerHTML = "Wins: " + wins;
+                document.getElementById("losses").innerHTML = "Losses: " + losses;
+                document.getElementById("guesses-left").innerHTML = "Guesses left: " + guesses;
+                document.getElementById("guesses-used").innerHTML = "Your Guesses so far: " + guessesUsed;
+                
+                //return; Liam recommended//
             }
             
 
